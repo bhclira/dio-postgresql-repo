@@ -37,3 +37,11 @@ This repository contains everything that was worked in PostgreSQL Training Cours
     - TRUNCATE [ TABLE ] [ ONLY ] name [ * ] [, ... ]
         [ RESTART IDENTITY | CONTINUE IDENTITY ] [ CASCADE | RESTRICT ]
         exemplo:
+
+5. FUNÇÕES AGREGADAS - agregated functions on doc on-line pesquisar no youtube:
+   - AVG
+   - COUNT
+   - MAX
+   - MIN
+   - SUM
+
