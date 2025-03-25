@@ -33,11 +33,13 @@ This repository contains everything that was worked in PostgreSQL Training Cours
    - DELETE
     DELETE FROM (tabela) SET campo1 = novo_valor WHERE (condição);
 
+21/03
 4. TRUNCATE - esvazia a tabela
     - TRUNCATE [ TABLE ] [ ONLY ] name [ * ] [, ... ]
         [ RESTART IDENTITY | CONTINUE IDENTITY ] [ CASCADE | RESTRICT ]
         exemplo:
 
+22/03
 5. FUNÇÕES AGREGADAS - agregated functions on doc on-line pesquisar no youtube:
    - AVG
    - COUNT
@@ -45,3 +47,10 @@ This repository contains everything that was worked in PostgreSQL Training Cours
    - MIN
    - SUM
 
+25/03
+6. RELACIONAMENTO ENTRE TABELAS - JOINS
+   - JOIN: inner campos iguais em ambas as tabelas (intersecção)
+   - LEFT JOIN - left join (outer) prioridade às tabelas do lado esquerdo
+   - RIGHT JOIN right (outer) prioridade às tabelas À direita
+   - FULL JOIN
+   - CROSS JOIN - nao recomendável. todos os dados são cruzados criando uma matriz (consome recursos em demasia)
