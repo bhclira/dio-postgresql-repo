@@ -3,7 +3,6 @@ This repository contains everything that was worked in PostgreSQL Training Cours
 
 1. IDEMPOTENCIA
    - conceito
-   - 
 
 2. Melhores Praticas em DDL
    - criar colunas que sao atributos basicos do objeto
@@ -54,3 +53,10 @@ This repository contains everything that was worked in PostgreSQL Training Cours
    - RIGHT JOIN right (outer) prioridade às tabelas À direita
    - FULL JOIN
    - CROSS JOIN - nao recomendável. todos os dados são cruzados criando uma matriz (consome recursos em demasia)
+
+26/03
+7. OTIMIZANDO O CODIGO COM CTE - COMON TABLE EXPRESSION
+   - Conteito: forma de organizar "statments" ou blocos de códigos para consultas muito grandes, gerando tabelas temporárias e criando relacionamento entre elas;
+   - Podem conter: SELECTs, INSERTs, UPDATEs ou DELETEs;
+   - Se você tem apenas duas tabelas você usa o JOIN, etc; Não usa o CTE;
+  
