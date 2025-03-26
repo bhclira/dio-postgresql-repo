@@ -37,3 +37,41 @@ JOIN (
 SELECT 213 AS banco_numero
 ) params ON params.banco_numero = banco.numero;
 
+
+
+-- ==================================================================================================
+-- Explicação sobre a CTE 'clientes_e_transacoes':
+-- ==================================================================================================
+-- O código utiliza uma Common Table Expression (CTE) chamada 'clientes_e_transacoes' para consolidar
+-- informações sobre clientes, tipos de transações e valores de transações, filtrando especificamente
+-- por transações realizadas no banco "Itaú".
+--
+-- 1. A CTE seleciona três colunas principais:
+--    - O nome do cliente (cliente_nome).
+--    - O nome do tipo de transação (tipo_transacao_nome).
+--    - O valor da transação (tipo_transacao_valor).
+--
+-- 2. Os dados são obtidos por meio de múltiplos JOINs:
+--    - O primeiro JOIN relaciona 'cliente_transacoes' com 'cliente', associando cada transação ao cliente.
+--    - O segundo JOIN conecta 'cliente_transacoes' com 'tipo_transacao', identificando o tipo de cada transação.
+--    - O terceiro JOIN filtra as transações para incluir apenas aquelas realizadas no banco "Itaú",
+--      utilizando a condição 'banco.nome ILIKE '%Itaú%'', que realiza uma busca case-insensitive.
+--
+-- 3. A consulta principal retorna os dados consolidados na CTE, exibindo o nome do cliente, o tipo de
+--    transação e o valor correspondente.
+--
+-- Essa abordagem modular melhora a legibilidade e organização do código, especialmente em consultas
+-- complexas que envolvem múltiplas tabelas e condições.
+-- ==================================================================================================
+WITH clientes_e_transacoes AS (
+    SELECT cliente.nome AS cliente_nome,
+    tipo_transacao.nome AS tipo_transacao_nome,
+    cliente_transacoes.valor AS tipo_transacao_valor
+    FROM cliente_transacoes
+    JOIN cliente ON cliente.numero = cliente_transacoes.cliente_numero
+    JOIN tipo_transacao ON tipo_transacao.id = cliente_transacoes.tipo_transacao_id
+    -- uma query de transacoes so no banco ITAU
+    JOIN banco ON banco.numero = cliente_transacoes.banco_numero AND banco.nome ILIKE '%Itaú%'
+    )
+SELECT cliente_nome, tipo_transacao_nome, tipo_transacao_valor
+FROM clientes_e_transacoes;
