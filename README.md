@@ -58,5 +58,30 @@ This repository contains everything that was worked in PostgreSQL Training Cours
 7. OTIMIZANDO O CODIGO COM CTE - COMON TABLE EXPRESSION
    - Conteito: forma de organizar "statments" ou blocos de códigos para consultas muito grandes, gerando tabelas temporárias e criando relacionamento entre elas;
    - Podem conter: SELECTs, INSERTs, UPDATEs ou DELETEs;
-   - Se você tem apenas duas tabelas você usa o JOIN, etc; Não usa o CTE;
-  
+   - Se você tem apenas duas tabelas você usa o JOIN, etc; Não usa o CTE
+
+31/03
+8. COMO AS VIEWS AUXILIAM NO ACESSO AO BANCO DE DADOS
+   - Views são consultas armazenadas no banco de dados que se comportam como tabelas virtuais, permitindo encapsular consultas complexas e reutilizá-las de forma simples.
+   - Benefícios:
+     - Reutilização de consultas complexas.
+     - Melhora na segurança, restringindo o acesso direto às tabelas.
+     - Organização e clareza no código SQL.
+     - Facilidade de manutenção, já que alterações podem ser feitas diretamente na View.
+   - Tipos de Views:
+     - Views Simples: baseadas em consultas simples.
+     - Recursive Views: permitem consultas recursivas, úteis para hierarquias.
+     - Materialized Views: armazenam os dados fisicamente, melhorando o desempenho em consultas pesadas.
+   - Exemplo:
+     ```sql
+     CREATE VIEW clientes_transacoes AS
+     SELECT 
+         cliente.nome AS cliente_nome,
+         tipo_transacao.nome AS tipo_transacao_nome,
+         cliente_transacoes.valor AS valor_transacao
+     FROM cliente_transacoes
+     JOIN cliente ON cliente.numero = cliente_transacoes.cliente_numero
+     JOIN tipo_transacao ON tipo_transacao.id = cliente_transacoes.tipo_transacao_id;
+
+     SELECT * FROM clientes_transacoes WHERE valor_transacao > 1000;
+     ```
